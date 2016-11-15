@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		.showPic{width: 512px;height: 400px;margin:20px auto;
+				position: relative;overflow: hidden;}
+		#pic{position: absolute;top:0;left:0;}
+		#upper{width: 100%;height: 200px;position:absolute;top:0;left:0;cursor: pointer;}
+		#lower{width: 100%;height: 200px;position:absolute;top:200px;left:0;cursor: pointer;}
+	</style>
+</head>
+<body>
+	<div class="showPic">
+		<img src="mi.png" id="pic">
+		<span id="upper"></span>
+		<span id="lower"></span>
+	</div>
+</body>
+</html>
+<script type="text/javascript">
+	function $(id){return document.getElementById(id);};
+	var topPosition=0;
+	var timer=null;
+	$("upper").onmouseover=function(){
+			clearInterval(timer);
+			//不写这个会叠加的 越来越快
+			function rollPic(){
+				topPosition-=3;
+				topPosition>=-1070?$("pic").style.top=topPosition+"px":clearInterval(timer);
+			};
+			timer=setInterval(rollPic,20);
+	};
+	//Same for Lower DOM
+
+	$("upper").onmouseout=function(){clearInterval(timer);};
+	//Equivalent to
+	/*$("upper").addEventListener('mouseout',function(){clearInterval(timer)});*/
+</script>
