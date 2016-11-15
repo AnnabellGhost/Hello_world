@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<input type="text">
+	<button id="bnt">Click to send Code</button>
+</body>
+</html>
+<script type="text/javascript">
+	function $(id){return document.getElementById(id);};
+	var sec=5;
+	$("bnt").onclick=function(){
+		this.disabled=true;
+		var _this=this;
+		function message(){
+			sec--;
+			if(sec>=0){_this.innerHTML="Counting:"+sec+" left";}
+			//equals to section2 
+			/*else{
+				_this.disabled=false;
+				_this.innerHTML="Click to send Code";
+				clearInterval(timer);
+			}*/
+		};
+		var timer=setInterval(message,1000);
+
+		//section2 Begin
+		function ableButton(){
+			_this.disabled=false;
+			_this.innerHTML="Click to send Code";
+			clearInterval(timer);
+		};
+		setTimeout(ableButton,5000);
+		//section2 End
+	};
+</script>
